@@ -1,4 +1,7 @@
 import animals.AbsAnimal;
+import animals.pets.Cat;
+import animals.pets.Dog;
+import animals.birds.Duck;
 import data.AnimalTypeData;
 import data.CommandData;
 import factories.AnimalFactory;
@@ -62,8 +65,8 @@ public class Main {
         System.out.println("Какой цвет у животного?");
         animal.setColor(scanner.next());
 
-        System.out.println("Сколько лет животному?");
-               while (true) {
+        while (true) {
+            System.out.println("Сколько лет животному?");
                    try {
                        int age = Integer.parseInt(scanner.next());
                        animal.setAge(age);
@@ -73,8 +76,8 @@ public class Main {
                    }
                }
 
-        System.out.println("Сколько весит животное?");
         while (true) {
+            System.out.println("Сколько весит животное?");
             try {
                 int weight = Integer.parseInt(scanner.next());
                 animal.setWeight(weight);
