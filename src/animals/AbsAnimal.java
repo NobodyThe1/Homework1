@@ -26,12 +26,16 @@ public class AbsAnimal {
         this.name = name;
     }
 
-    public void setAge(int age) {
-        if (age >= 0 && age <= 100) {
-            this.age = age;
-        } else {
-            System.out.println("Неверный возраст!");
-        }
+
+        public void setAge ( int age) {
+        //    while(true) {
+                if (age >= 0 && age <= 100) {
+                    this.age = age;
+                    // break;
+            } else {
+                    System.out.println("Неверный возраст!");
+            }
+        //}
     }
 
     public void setWeight(int weight) {
@@ -77,5 +81,4 @@ public class AbsAnimal {
         return String.format("Привет! Меня зовут %s, мне %d %s, я вешу %d кг, мой цвет - %s.",
                 name, age, getCase(age), weight, color);
     }
-
 }
