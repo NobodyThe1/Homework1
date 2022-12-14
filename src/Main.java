@@ -14,9 +14,6 @@ public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
     private static List<AbsAnimal> animalList = new ArrayList<>();
-    //private static AnimalTypeData[] animalArray = AnimalTypeData.values();
-    //private static CommandData dataArray[] = CommandData.values();
-
 
     public static void main(String[] args) {
 
@@ -27,40 +24,53 @@ public class Main {
             System.out.println("EXIT - выйти из программы");
 
             String commandName = scanner.next().toUpperCase(Locale.ROOT).trim();
-
-            try {
-                CommandData commandData = CommandData.valueOf(commandName);
-
-                switch (commandData) {
-                    case LIST -> {
-                        for (int i = 0; i < animalList.size(); i++) {
-                            System.out.println(animalList.get(i));
-                        }
-                        System.out.println();
-                    }
-                    case EXIT -> System.exit(0);
-                    case ADD -> {
-                        System.out.println("Выберите животное");
-
-                        try {
-                            String animalName = scanner.next().toUpperCase(Locale.ROOT).trim();
-                            AnimalTypeData type = AnimalTypeData.valueOf(animalName);
-                            animalList.add(0, (fillAnimalData(type)));
-                            animalList.get(0).say();
-                            System.out.println();
-                        } catch (IllegalArgumentException e) {
-                            System.out.println("Нет такого животного!");
-                            continue;
-                        }
-                    }
-                    default -> System.out.println("Неизвестная команда");
+            boolean isExistCommand = false;
+            for (CommandData commandData : CommandData.values()) {
+                if (commandData.name().equals(commandName)) {
+                    isExistCommand = true;
+                    break;
                 }
-            } catch (IllegalArgumentException e) {
+            }
+            if (!isExistCommand) {
                 System.out.println("Нет такой команды!");
                 continue;
             }
+            CommandData commandData = CommandData.valueOf(commandName);
+
+            switch (commandData) {
+                case LIST -> {
+                    for (int i = 0; i < animalList.size(); i++) {
+                        System.out.println(animalList.get(i));
+                    }
+                    System.out.println();
+                }
+                case EXIT -> System.exit(0);
+                case ADD -> {
+                    System.out.println("Выберите животное");
+
+                    String animalName = scanner.next().toUpperCase(Locale.ROOT).trim();
+                    boolean isExistAnimal = false;
+                    for (AnimalTypeData animalTypeData : AnimalTypeData.values()) {
+                        if (animalTypeData.name().equals(animalName)) {
+                            isExistAnimal = true;
+                            break;
+                        }
+                    }
+                    if (!isExistAnimal) {
+                        System.out.println("Нет такого животного!");
+                        continue;
+                    }
+                    AnimalTypeData type = AnimalTypeData.valueOf(animalName);
+                    animalList.add(0, (fillAnimalData(type)));
+                    animalList.get(0).say();
+                    System.out.println();
+                }
+                default -> System.out.println("Неизвестная команда");
+            }
         }
     }
+
+
 
 
     private static AbsAnimal fillAnimalData(AnimalTypeData type) {
@@ -98,29 +108,4 @@ public class Main {
         return animal;
     }
 
-    private static boolean isExistAnimal(Enum<AnimalTypeData> type, String scan) {
-        AnimalTypeData[] animalArray = AnimalTypeData.values();
-        for (AnimalTypeData s : animalArray) {
-            if (scan.equals(s.toString())) {
-                return true;
-            } else {
-                System.out.println("Нет такого животного!");
-                continue;
-            }
-        }
-        return false;
-    }
-
-    private static boolean isExistCommand(String scan) {
-        CommandData[] commandArray = CommandData.values();
-        for (CommandData s : commandArray) {
-            if (scan.equals(s.toString().toUpperCase().trim())) {
-                continue;
-            } else {
-                System.out.println("Нет такой команды!");
-                break;
-            }
-        }
-        return false;
-    }
 }
