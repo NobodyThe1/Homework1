@@ -27,22 +27,13 @@ public class AbsAnimal {
     }
 
 
-        public void setAge ( int age) {
-                if (age >= 0 && age <= 100) {
-                    this.age = age;
-                    // break;
-            } else {
-                    System.out.println("Неверный возраст!");
-            }
+    public void setAge (int age) {
+    this.age = age;
     }
 
     public void setWeight(int weight) {
-            if (weight >= 0 && weight <= 100) {
-                this.weight = weight;
-            } else {
-                System.out.println("Неверный вес!");
-            }
-        }
+    this.weight = weight;
+    }
 
     public void setColor(String color) {
         this.color = color;
