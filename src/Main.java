@@ -88,7 +88,12 @@ public class Main {
             System.out.println("Сколько лет животному?");
                    try {
                        int age = Integer.parseInt(scanner.next());
-                       animal.setAge(age);
+                       if (age <= 0 || age >= 100) {
+                           System.out.println("Неверный возраст");
+                           continue;
+                       } else {
+                           animal.setAge(age);
+                       }
                        break;
                    } catch (NumberFormatException ex) {
                        System.out.println("Неверный возраст");
@@ -99,7 +104,12 @@ public class Main {
             System.out.println("Сколько весит животное?");
             try {
                 int weight = Integer.parseInt(scanner.next());
-                animal.setWeight(weight);
+                if (weight <= 0 || weight >= 100) {
+                    System.out.println("Неверный вес");
+                    continue;
+                } else {
+                    animal.setWeight(weight);
+                }
                 break;
             } catch (NumberFormatException ex) {
                 System.out.println("Неверный вес");
