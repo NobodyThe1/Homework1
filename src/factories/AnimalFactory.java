@@ -21,7 +21,7 @@ public class AnimalFactory {
             case DUCK -> {
                 return new Duck();
             }
-            case default -> {
+            default -> {
                 return null;
             }
         }
